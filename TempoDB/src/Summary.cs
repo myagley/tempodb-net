@@ -9,6 +9,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Summary : Model, IDictionary<string, double>
     {
         private static SummaryConverter converter = new SummaryConverter();
@@ -36,6 +39,13 @@ namespace TempoDB
             private set { this.timezone = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="interval"></param>
+        /// <param name="timezone"></param>
+        /// <param name="data"></param>
         public Summary(Series series, Interval interval, DateTimeZone timezone, Dictionary<string, double> data)
         {
             Series = series;

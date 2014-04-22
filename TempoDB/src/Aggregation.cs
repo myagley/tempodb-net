@@ -4,6 +4,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Aggregation
     {
         private Fold fold;

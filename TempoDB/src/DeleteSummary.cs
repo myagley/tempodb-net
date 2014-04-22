@@ -6,6 +6,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DeleteSummary : Model
     {
         private int deleted;
@@ -17,6 +20,10 @@ namespace TempoDB
             private set { this.deleted = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deleted"></param>
         public DeleteSummary(int deleted)
         {
             Deleted = deleted;

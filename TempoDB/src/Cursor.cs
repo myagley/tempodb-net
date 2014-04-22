@@ -8,10 +8,18 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Cursor<T> : Model where T: Model
     {
         private SegmentEnumerator<T> segments;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="segments"></param>
         public Cursor(SegmentEnumerator<T> segments)
         {
             this.segments = segments;
@@ -29,6 +37,10 @@ namespace TempoDB
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SegmentEnumerator<T> where T: Model
     {
         private Segment<T> segment;
@@ -63,6 +75,10 @@ namespace TempoDB
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Segment<T> : Model where T: Model
     {
         private IList<T> data;

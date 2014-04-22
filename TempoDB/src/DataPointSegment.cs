@@ -9,6 +9,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataPointSegment : Segment<DataPoint>
     {
         private static DataPointSegmentConverter converter = new DataPointSegmentConverter();
@@ -19,6 +22,13 @@ namespace TempoDB
         [JsonProperty(PropertyName="tz")]
         public DateTimeZone TimeZone { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="datapoints"></param>
+        /// <param name="next"></param>
+        /// <param name="tz"></param>
+        /// <param name="rollup"></param>
         public DataPointSegment(IList<DataPoint> datapoints, string next, DateTimeZone tz, Rollup rollup) : base(datapoints, next)
         {
             TimeZone = tz;

@@ -8,6 +8,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MultiDataPoint : Model
     {
         private ZonedDateTime timestamp;
@@ -27,6 +30,11 @@ namespace TempoDB
             private set { this.data = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <param name="data"></param>
         public MultiDataPoint(ZonedDateTime timestamp, IDictionary<string, double> data)
         {
             Timestamp = timestamp;

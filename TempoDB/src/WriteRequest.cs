@@ -9,6 +9,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class WriteRequest : IEnumerable
     {
         private List<WritableDataPoint> data;
@@ -18,12 +21,24 @@ namespace TempoDB
             this.data = new List<WritableDataPoint>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="datapoint"></param>
+        /// <returns></returns>
         public WriteRequest Add(Series series, DataPoint datapoint)
         {
             this.data.Add(new WritableDataPoint(series, datapoint.Timestamp, datapoint.Value));
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="datapoints"></param>
+        /// <returns></returns>
         public WriteRequest Add(Series series, IList<DataPoint> datapoints)
         {
             foreach(DataPoint datapoint in datapoints)

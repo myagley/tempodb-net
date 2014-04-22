@@ -5,6 +5,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Rollup
     {
         private Fold fold;
@@ -23,6 +26,12 @@ namespace TempoDB
             get { return period; }
             private set { this.period = value; }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="period"></param>
+        /// <param name="fold"></param>
         public Rollup(NodaTime.Period period, Fold fold)
         {
             this.period = period;

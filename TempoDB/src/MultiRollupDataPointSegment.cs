@@ -9,6 +9,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MultiRollupDataPointSegment : Segment<MultiDataPoint>
     {
         private static MultiRollupDataPointSegmentConverter converter = new MultiRollupDataPointSegmentConverter();
@@ -19,6 +22,13 @@ namespace TempoDB
         [JsonProperty(PropertyName="tz")]
         public DateTimeZone TimeZone { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="datapoints"></param>
+        /// <param name="next"></param>
+        /// <param name="tz"></param>
+        /// <param name="rollup"></param>
         public MultiRollupDataPointSegment(IList<MultiDataPoint> datapoints, string next, DateTimeZone tz, MultiRollup rollup) : base(datapoints, next)
         {
             TimeZone = tz;

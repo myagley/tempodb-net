@@ -5,6 +5,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataPointFound : Model
     {
         private Interval interval;

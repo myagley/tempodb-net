@@ -10,6 +10,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TempoDB
     {
         private Database database;
@@ -24,6 +27,16 @@ namespace TempoDB
         private string clientVersion = string.Format("tempodb-net/{0}", typeof(TempoDB).Assembly.GetName().Version.ToString());
         private const int DefaultTimeoutMillis = 50000;  // 50 seconds
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="credentials"></param>
+        /// <param name="host"></param>
+        /// <param name="port"></param>
+        /// <param name="version"></param>
+        /// <param name="secure"></param>
+        /// <param name="client"></param>
         public TempoDB(Database database, Credentials credentials, string host="api.tempo-db.com", int port=443, string version="v1", bool secure=true, RestClient client=null)
         {
             Database = database;
@@ -35,6 +48,11 @@ namespace TempoDB
             Client = client;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <returns></returns>
         public Response<Series> CreateSeries(Series series)
         {
             var url = "/{version}/series/";
@@ -44,6 +62,12 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
         public Response<Nothing> DeleteDataPoints(Series series, Interval interval)
         {
             var url = "/{version}/series/key/{key}/data/";
@@ -55,6 +79,11 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <returns></returns>
         public Response<Nothing> DeleteSeries(Series series)
         {
             var url = "/{version}/series/key/{key}/";
@@ -65,6 +94,11 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public Response<DeleteSummary> DeleteSeries(Filter filter)
         {
             var url = "/{version}/series/";
@@ -74,6 +108,10 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Response<DeleteSummary> DeleteAllSeries()
         {
             var url = "/{version}/series/";
@@ -83,6 +121,14 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="interval"></param>
+        /// <param name="predicate"></param>
+        /// <param name="zone"></param>
+        /// <returns></returns>
         public Cursor<DataPointFound> FindDataPoints(Series series, Interval interval, Predicate predicate, DateTimeZone zone=null)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -109,6 +155,11 @@ namespace TempoDB
             return cursor;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public Response<Series> GetSeries(string key)
         {
             var url = "/{version}/series/key/{key}/";
@@ -119,6 +170,11 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public Response<Cursor<Series>> GetSeries(Filter filter)
         {
             var url = "/{version}/series/";
@@ -139,6 +195,15 @@ namespace TempoDB
             return new Response<Cursor<Series>>(cursor, response.Code, response.Message);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="interval"></param>
+        /// <param name="zone"></param>
+        /// <param name="rollup"></param>
+        /// <param name="interpolation"></param>
+        /// <returns></returns>
         public Response<QueryResult<DataPoint>> ReadDataPoints(Series series, Interval interval, DateTimeZone zone=null, Rollup rollup=null, Interpolation interpolation=null)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -167,6 +232,15 @@ namespace TempoDB
             return new Response<QueryResult<DataPoint>>(query, response.Code, response.Message);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="interval"></param>
+        /// <param name="zone"></param>
+        /// <param name="rollup"></param>
+        /// <param name="interpolation"></param>
+        /// <returns></returns>
         public Response<Cursor<MultiDataPoint>> ReadMultiRollupDataPoints(Series series, Interval interval, DateTimeZone zone, MultiRollup rollup, Interpolation interpolation=null)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -194,6 +268,16 @@ namespace TempoDB
             return new Response<Cursor<MultiDataPoint>>(cursor, response.Code, response.Message);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="interval"></param>
+        /// <param name="aggregation"></param>
+        /// <param name="zone"></param>
+        /// <param name="rollup"></param>
+        /// <param name="interpolation"></param>
+        /// <returns></returns>
         public Response<QueryResult<DataPoint>> ReadDataPoints(Filter filter, Interval interval, Aggregation aggregation, DateTimeZone zone=null, Rollup rollup=null, Interpolation interpolation=null)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -223,6 +307,15 @@ namespace TempoDB
             return new Response<QueryResult<DataPoint>>(query, response.Code, response.Message);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="interval"></param>
+        /// <param name="zone"></param>
+        /// <param name="rollup"></param>
+        /// <param name="interpolation"></param>
+        /// <returns></returns>
         public Response<QueryResult<MultiDataPoint>> ReadMultiDataPoints(Filter filter, Interval interval, DateTimeZone zone=null, Rollup rollup=null, Interpolation interpolation=null)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -251,6 +344,14 @@ namespace TempoDB
             return new Response<QueryResult<MultiDataPoint>>(query, response.Code, response.Message);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="timestamp"></param>
+        /// <param name="zone"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public Response<SingleValue> ReadSingleValue(Series series, ZonedDateTime timestamp, DateTimeZone zone=null, Direction direction=Direction.Exact)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -265,6 +366,14 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="timestamp"></param>
+        /// <param name="zone"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public Response<Cursor<SingleValue>> ReadSingleValue(Filter filter, ZonedDateTime timestamp, DateTimeZone zone=null, Direction direction=Direction.Exact)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -289,6 +398,13 @@ namespace TempoDB
             return new Response<Cursor<SingleValue>>(cursor, response.Code, response.Message);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="interval"></param>
+        /// <param name="zone"></param>
+        /// <returns></returns>
         public Response<Summary> ReadSummary(Series series, Interval interval, DateTimeZone zone=null)
         {
             if(zone == null) zone = DateTimeZone.Utc;
@@ -302,6 +418,11 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <returns></returns>
         public Response<Series> UpdateSeries(Series series)
         {
             var url = "/{version}/series/key/{key}/";
@@ -312,6 +433,12 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public Response<Nothing> WriteDataPoints(Series series, IList<DataPoint> data)
         {
             var url = "/{version}/series/key/{key}/data/";
@@ -322,6 +449,11 @@ namespace TempoDB
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="writerequest"></param>
+        /// <returns></returns>
         public Response<Nothing> WriteDataPoints(WriteRequest writerequest)
         {
             var url = "/{version}/multi/";
@@ -331,18 +463,31 @@ namespace TempoDB
             return response;
         }
 
-        public Response<T> Execute<T>(RestRequest request) where T : Model
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        internal Response<T> Execute<T>(RestRequest request) where T : Model
         {
             return Execute<T>(request, typeof(T));
         }
 
-        public Response<T> Execute<T>(RestRequest request, Type type) where T : Model
+        internal Response<T> Execute<T>(RestRequest request, Type type) where T : Model
         {
             var response = new Response<T>(Client.Execute(request), type);
             return response;
         }
 
-        public RestRequest BuildRequest(string url, Method method, object body=null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="method"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        internal RestRequest BuildRequest(string url, Method method, object body=null)
         {
             var request = new RestRequest {
                 Method = method,

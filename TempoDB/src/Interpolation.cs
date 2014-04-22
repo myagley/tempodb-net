@@ -5,12 +5,18 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum InterpolationFunction
     {
         ZOH,
         Linear
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Interpolation
     {
         private Period period;
@@ -28,6 +34,11 @@ namespace TempoDB
             private set { this.function = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="period"></param>
+        /// <param name="function"></param>
         public Interpolation(Period period, InterpolationFunction function)
         {
             Period = period;

@@ -8,6 +8,10 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Response<T> where T : Model
     {
         private static SingleValueConverter singlevalueConverter = new SingleValueConverter();
@@ -27,8 +31,17 @@ namespace TempoDB
             get { return getState(Code); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="response"></param>
         public Response(IRestResponse response) : this(response, typeof(T)) { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="type"></param>
         public Response(IRestResponse response, Type type)
         {
             T value = null;
@@ -55,6 +68,13 @@ namespace TempoDB
             MultiStatus = multistatus;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="multistatus"></param>
         public Response(T v, int code, string message="", MultiStatus multistatus=null)
         {
             Value = v;

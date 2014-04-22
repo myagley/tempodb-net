@@ -8,6 +8,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SingleValue : Model
     {
         private static SingleValueConverter converter = new SingleValueConverter();
@@ -29,6 +32,11 @@ namespace TempoDB
             private set { this.datapoint = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="series"></param>
+        /// <param name="datapoint"></param>
         public SingleValue(Series series, DataPoint datapoint)
         {
             Series = series;

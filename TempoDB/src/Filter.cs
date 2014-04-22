@@ -5,12 +5,21 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Filter
     {
         private HashSet<string> keys;
         private HashSet<string> tags;
         private IDictionary<string, string> attributes;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <param name="tags"></param>
+        /// <param name="attributes"></param>
         public Filter(HashSet<string> keys=null, HashSet<string> tags=null, IDictionary<string, string> attributes=null)
         {
             Keys = keys == null ? new HashSet<string>() : keys;

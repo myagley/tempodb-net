@@ -1,5 +1,8 @@
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Direction
     {
         Before,

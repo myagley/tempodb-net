@@ -7,6 +7,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Series : Model
     {
         private string key;
@@ -42,6 +45,13 @@ namespace TempoDB
             private set { this.attributes = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="name"></param>
+        /// <param name="tags"></param>
+        /// <param name="attributes"></param>
         public Series(string key, string name="", HashSet<string> tags=null, Dictionary<string, string> attributes=null)
         {
             Key = key;

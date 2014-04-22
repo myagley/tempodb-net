@@ -6,6 +6,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MultiRollup
     {
         private Fold[] folds;
@@ -25,6 +28,11 @@ namespace TempoDB
             private set { this.period = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="period"></param>
+        /// <param name="folds"></param>
         public MultiRollup(NodaTime.Period period, Fold[] folds)
         {
             this.period = period;

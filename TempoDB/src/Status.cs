@@ -8,6 +8,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Status
     {
         private int code;
@@ -27,6 +30,11 @@ namespace TempoDB
             private set { messages = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="messages"></param>
         public Status(int code, IList<string> messages)
         {
             Code = code;

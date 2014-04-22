@@ -5,6 +5,9 @@ using TempoDB.Utility;
 
 namespace TempoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Predicate
     {
         private string function;
@@ -24,6 +27,11 @@ namespace TempoDB
             private set { this.period = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="period"></param>
+        /// <param name="function"></param>
         public Predicate(NodaTime.Period period, string function)
         {
             this.function = function;
